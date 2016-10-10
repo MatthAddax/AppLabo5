@@ -92,7 +92,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Assets\city.list.json" />
+    <Content Include="Assets\city.list.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +107,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\City.cs" />
+    <Compile Include="Model\CityService.cs" />
     <Compile Include="Model\Forecast.cs" />
     <Compile Include="Model\WeatherForecast.cs" />
     <Compile Include="Model\WeatherService.cs" />

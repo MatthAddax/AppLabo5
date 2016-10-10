@@ -37,7 +37,14 @@ namespace AppLabo5.ViewModel
 
         public MainViewModel()
         {
+            InitializeCitiesList();
+        }
 
+        private async void InitializeCitiesList()
+        {
+            var service = new CityService();
+            var cities = await service.GetCitiesFromJson();
+            Cities = new ObservableCollection<City>(cities);
         }
     }
 }

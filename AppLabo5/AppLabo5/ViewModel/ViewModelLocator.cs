@@ -14,6 +14,7 @@ namespace AppLabo5.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<WeatherViewModel>();
 
             NavigationService navigationPages = new NavigationService();

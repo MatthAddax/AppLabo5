@@ -18,6 +18,7 @@
         <AutoSuggestBox Grid.Row="0" QueryIcon="Find"
                         PlaceholderText="Namur"
                         Width="200"
-                        ItemsSource="{Binding Cities}"/>
+                        ItemsSource="{Binding Cities}"
+                        ItemTemplate="{StaticResource AutoSuggestBoxItemTemplate}"/>
     </Grid>
 </Page>

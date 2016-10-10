@@ -33,5 +33,13 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
+
+        <DataTemplate x:Key="AutoSuggestBoxItemTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Name}"/>
+                <TextBlock HorizontalAlignment="Left" Text=", "/>
+                <TextBlock HorizontalAlignment="Left" Text="{Binding Country}"/>
+            </StackPanel>
+        </DataTemplate>
     </Application.Resources>
 </Application>
