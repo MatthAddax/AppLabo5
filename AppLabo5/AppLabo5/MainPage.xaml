@@ -6,7 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+    DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity" 
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
@@ -18,7 +20,18 @@
         <AutoSuggestBox Grid.Row="0" QueryIcon="Find"
                         PlaceholderText="Namur"
                         Width="200"
-                        ItemsSource="{Binding Cities}"
-                        ItemTemplate="{StaticResource AutoSuggestBoxItemTemplate}"/>
+                        Text="{Binding UserInput, Mode=TwoWay}"
+                        ItemsSource="{Binding CitiesDataSet, Mode=TwoWay}"
+                        ItemTemplate="{StaticResource AutoSuggestBoxItemTemplate}"
+                        >
+                        <!-- ="{Binding CitySelected}"-->
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SuggestionChosen">
+                    <core:InvokeCommandAction 
+              Command="{Binding CitySelectedCommand }"
+              InputConverter="{StaticResource AutoSuggestCityConverter}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+        </AutoSuggestBox>
     </Grid>
 </Page>

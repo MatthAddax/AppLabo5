@@ -101,6 +101,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\AutoSuggestBoxResultToCityConverter.cs" />
     <Compile Include="Converter\StringFormatConverter.cs" />
     <Compile Include="Converter\WeatherDescriptionToImageValueConverter.cs" />
     <Compile Include="MainPage.xaml.cs">

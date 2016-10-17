@@ -9,7 +9,8 @@
         <vm:ViewModelLocator x:Key="Locator" xmlns:vm="using:AppLabo5.ViewModel" />
         <converter:WeatherDescriptionToImageValueConverter x:Key="WeatherImage" />
         <converter:StringFormatConverter x:Key="StringConverter" />
-
+        <converter:AutoSuggestBoxResultToCityConverter x:Key="AutoSuggestCityConverter" />
+        
         <DataTemplate x:Key="WeatherTemplate1">
             <Grid Margin="15">
                 <Grid.ColumnDefinitions>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppLabo5.Model
 {
-    class City
+    public class City
     {
         public double ID { get; set; }
         public string Name { get; set; }
@@ -14,5 +14,10 @@ namespace AppLabo5.Model
         public double Longitude { get; set; }
         public double Latitude { get; set; }
 
+
+        public override string ToString()
+        {
+            return Name + ", " + Country;
+        }
     }
 }

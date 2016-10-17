@@ -26,5 +26,6 @@ namespace AppLabo5
         {
             this.InitializeComponent();
         }
+
     }
 }

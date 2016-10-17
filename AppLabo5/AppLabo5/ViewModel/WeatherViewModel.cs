@@ -1,17 +1,34 @@
 ﻿using AppLabo5.Model;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Navigation;
 
 namespace AppLabo5.ViewModel
 {
     class WeatherViewModel : ViewModelBase
     {
         private ObservableCollection<WeatherForecast> _forecast = null;
+        private City _selectedCity;
+
+        public City SelectedCity
+        {
+            get { return _selectedCity; }
+            set {
+                if (_selectedCity == value)
+                    return;
+                _selectedCity = value;
+                RaisePropertyChanged("SelectedCity");
+                GetForecast(_selectedCity);
+            }
+        }
+
 
         public ObservableCollection<WeatherForecast> Forecast
         {
@@ -23,9 +40,16 @@ namespace AppLabo5.ViewModel
                 RaisePropertyChanged("Forecast");
             }
         }
-
-        public WeatherViewModel()
+        private INavigationService _navigationService;
+        public void OnNavigateTo(NavigationEventArgs e)
         {
+            SelectedCity = (City)e.Parameter;
+        }
+
+        [PreferredConstructor]
+        public WeatherViewModel(INavigationService navigationService = null)
+        {
+            _navigationService = navigationService;
             if (IsInDesignMode)
             {
                 var forecast = new Forecast() { Cityname = "Namur" };
@@ -45,15 +69,13 @@ namespace AppLabo5.ViewModel
                 forecast.WeatherForecasts = weatherForecasts;
                 Forecast = new ObservableCollection<WeatherForecast>(weatherForecasts);
             }
-            else
-            {
-                InitializeAsync();
-            }
         }
+        
 
-        private async Task InitializeAsync()
+
+        private async Task GetForecast(City selectedCity)
         {
-            var service = new WeatherService();
+            var service = new WeatherService(selectedCity);
             var forecast = await service.GetForecast();
             Forecast = new ObservableCollection<WeatherForecast>(forecast);
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppLabo5.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,10 @@ namespace AppLabo5
         public WeatherPage()
         {
             this.InitializeComponent();
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ((WeatherViewModel)DataContext).OnNavigateTo(e);
         }
     }
 }

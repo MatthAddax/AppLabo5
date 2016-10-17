@@ -10,10 +10,15 @@ namespace AppLabo5.Model
 {
     public class WeatherService
     {
+        public City SelectedCity { get; set; }
+        public WeatherService(City city)
+        {
+            SelectedCity = city;
+        }
         public async Task<IEnumerable<WeatherForecast>> GetForecast()
         {
             var wc = new HttpClient();
-            var weather = await wc.GetStringAsync(new Uri("http://api.openweathermap.org/data/2.5/forecast?q=Namur,be&mode=json&lang=fr&units=metric&appid=abb17ae17eafff71136fb71986a83c50"));
+            var weather = await wc.GetStringAsync(new Uri("http://api.openweathermap.org/data/2.5/forecast?id=" + SelectedCity.ID + "&mode=json&lang=fr&units=metric&appid=abb17ae17eafff71136fb71986a83c50"));
             var rawWeather = JObject.Parse(weather);
             var forecast = rawWeather["list"].Children().Select(d => new WeatherForecast() {
                 Date = d["dt_txt"].Value<DateTime>(),
